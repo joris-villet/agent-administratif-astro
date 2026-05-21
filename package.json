@@ -11,14 +11,25 @@
     "tauri": "tauri"
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.10",
-    "@astrojs/solid-js": "^4.1.0",
+    "@astrojs/check": "^0.9.6",
+    "@astrojs/solid-js": "^5.1.3",
+    "@astrojs/svelte": "^7.2.5",
     "@playform/compress": "^0.0.3",
     "@playform/inline": "^0.0.2",
+    "@tailwindcss/vite": "^4.1.18",
     "@tauri-apps/api": ">=2.0.0-beta.0",
     "@tauri-apps/cli": ">=2.0.0-beta.0",
-    "astro": "^4.6.0",
+    "animejs": "^4.3.6",
+    "astro": "^5.17.2",
+    "gsap": "^3.14.2",
+    "muuri": "^0.9.5",
     "solid-js": "^1.8.16",
-    "typescript": "^5.4.5"
+    "svelte": "^5.51.2",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3",
+    "web-animations-js": "^2.3.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.8.1"
   }
 }
