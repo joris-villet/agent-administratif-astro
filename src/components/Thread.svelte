@@ -115,7 +115,7 @@
                 .replace(":", "h")}
             </span>
 
-            <ThreadOptions />
+            <ThreadOptions threadId={thread.threadId} title={thread.title} />
 
             <p class="w-full text-left font-bold py-0.5 mt-4">
               {thread.title ?? thread.threadId}
