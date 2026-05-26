@@ -1,0 +1,20 @@
+---
+// import Layout from '@/layouts/Layout.astro';
+// import ContainerThread from '@/components/ContainerThread.astro';
+import ContainerChat from '@/components/ContainerChat.astro';
+import ContainerSources from '@/components/ContainerSources.astro';
+import DashLayout from '@/layouts/DashLayout.astro';
+---
+
+<!-- <Layout>
+  <div class="h-screen p-3 flex gap-3">
+    <ContainerThread />
+    <ContainerChat />
+    <ContainerSources />
+  </div>
+</Layout> -->
+
+ <DashLayout>
+  <ContainerChat />
+  <ContainerSources />
+ </DashLayout>

@@ -1,14 +1,20 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from "astro:transitions";
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="description" content="Dashboard domotique" />
+		<meta name="generator" content={Astro.generator} />
 	</head>
-	<body>
+	<body class="bg-surface-alt min-h-screen font-sans antialiased">
+		<ClientRouter />
 		<slot />
 	</body>
 </html>
