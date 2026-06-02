@@ -1,18 +1,19 @@
 @import "tailwindcss";
-@config "../../tailwind.config.js";
+/* @config "../../tailwind.config.js"; */
 @import "./app.css";
-@plugin "daisyui";
+/* @plugin "daisyui"; */
+
 
 
 
 .bg-custom {
-    background: #0a3254;
-    background: linear-gradient(153deg, rgba(10, 50, 84, 1) 0%, rgba(41, 37, 102, 1) 50%);
+    background: #41478a;
+background: linear-gradient(152deg, rgba(65, 71, 138, 1) 0%, rgba(75, 44, 99, 1) 72%);
 }
 
 .bg-message-user {
-    background: #24649c;
-    background: linear-gradient(94deg, rgba(36, 100, 156, 1) 0%, rgba(55, 88, 161, 1) 100%);
+    background: #4684bb;
+    background: linear-gradient(94deg, rgb(62, 128, 187) 0%, rgb(92, 94, 207) 100%);
 }
 
 .bg-message-ai {

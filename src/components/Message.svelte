@@ -7,7 +7,7 @@
 </script>
 
 {#if role === "user"}
-  <div class="flex justify-end mb-3">
+  <div class="flex justify-end mb-6">
     <div class="max-w-[75%] bg-message-user text-white px-4 py-2.5 rounded-2xl rounded-br-sm shadow-sm">
       <p class="anim-enter whitespace-pre-line font-mono leading-none">{content}</p>
     </div>
@@ -15,7 +15,7 @@
 {/if}
 
 {#if loading && isNewMessage}
-  <div class="flex justify-start mb-3 items-center gap-2">
+  <div class="flex justify-start mb-6 items-center gap-2">
     <div class="rounded-full bg-slate-200 border border-blue-100 flex items-center justify-center shrink-0 mb-0.5">
       <img src="/img/photo-agent.webp" alt="bot" class="w-12 h-12" />
     </div>
@@ -28,14 +28,14 @@
 {/if}
 
 {#if role === "assistant"}
-  <div class="flex justify-start mb-3 items-end gap-2">
+  <div class="flex justify-start mb-6 items-end gap-2">
     <div class="rounded-full bg-slate-200 border border-blue-100 flex items-center justify-center shrink-0 mb-0.5">
       <img src="/img/photo-agent.webp" alt="bot" class="w-12 h-12" />
     </div>
     <div class="max-w-[75%] bg-message-ai px-4 py-2.5 rounded-2xl rounded-bl-sm shadow-sm">
       <div class="anim-enter text-sm text-slate-700 leading-relaxed whitespace-pre-wrap">
         <!-- <VibeMessage {content} /> -->
-         {#if isNewMessage}
+        {#if isNewMessage}
           <VibeMessage {content} />
         {:else}
           <span class="whitespace-pre-line font-mono leading-none">{content}</span>

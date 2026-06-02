@@ -17,6 +17,8 @@ export interface IUser {
 export interface IResponseTeacher {
   message: string;
   token: number;
+  threadId: string;
+  title?: string; 
 }
 
 export interface IResponseTeacher {
