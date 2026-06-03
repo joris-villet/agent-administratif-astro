@@ -16,7 +16,7 @@
     <div class="flex items-center gap-4"></div>
 
     <div
-      class="shrink-0 flex items-start gap-2.5 px-4 py-3 rounded-xl border border-border bg-slate-50 max-w-[220px]"
+      class="shrink-0 flex items-start gap-2.5 px-4 py-3 rounded-xl border border-border bg-slate-50 max-w-55"
     >
       <svg
         class="w-5 h-5 text-accent shrink-0 mt-0.5"
@@ -57,7 +57,5 @@
     </div>
   {/if}
 
-  <div>
-    <InputPrompt />
-  </div>
+  <InputPrompt />
 </section>

@@ -3,13 +3,21 @@
   import { storeThreads } from "@/stores/thread.svelte";
   import type { IResponseTeacher, IThread } from "@/interfaces";
   import ky from "ky";
-	import ButtonSend from './ButtonSend.svelte';
+  import ButtonSend from "./ButtonSend.svelte";
 
-  let input = $state("");
+  let input = $state<string>("");
   let updatedMessages = $derived(storeMessage.messages);
 
-  const sendMessage = async (evt: any) => {
-    evt.preventDefault();
+  const handleKeyDown = (evt: KeyboardEvent) => {
+    //console.log("key =>", evt.key, "| input =>", input);
+    if (evt.key === "Enter") {
+      evt.preventDefault();
+      sendMessage();
+    }
+  };
+
+  const sendMessage = async () => {
+    // evt.preventDefault();
 
     if (!input.trim()) return;
 
@@ -51,19 +59,27 @@
 
       if (responseTeacher) {
         storeMessage.isLoading = false;
-        if (responseTeacher.threadId && responseTeacher.threadId !== storeMessage.threadId) {
+        if (
+          responseTeacher.threadId &&
+          responseTeacher.threadId !== storeMessage.threadId
+        ) {
           storeMessage.threadId = responseTeacher.threadId;
-          window.history.pushState({}, '', `/chat/${responseTeacher.threadId}`);
-          const exists = storeThreads.threads.some((t: IThread) => t.threadId === responseTeacher.threadId);
+          window.history.pushState({}, "", `/chat/${responseTeacher.threadId}`);
+          const exists = storeThreads.threads.some(
+            (t: IThread) => t.threadId === responseTeacher.threadId,
+          );
           if (!exists) {
-            storeThreads.threads = [{
-              id: 0,
-              threadId: responseTeacher.threadId,
-              title: responseTeacher.title ?? userMessage.slice(0, 50),
-              createdAt: new Date().toISOString(),
-              updatedAt: new Date().toISOString(),
-              messages: [],
-            }, ...storeThreads.threads];
+            storeThreads.threads = [
+              {
+                id: 0,
+                threadId: responseTeacher.threadId,
+                title: responseTeacher.title ?? userMessage.slice(0, 50),
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
+                messages: [],
+              },
+              ...storeThreads.threads,
+            ];
           }
         }
         setTimeout(() => {
@@ -86,15 +102,13 @@
     class="border border-blue-300 rounded-2xl bg-white focus-within:border-blue-400 focus-within:shadow-accent/20 transition-colors shadow-lg shadow-gray-200"
   >
     <textarea
+      onkeydown={handleKeyDown}
       bind:value={input}
       rows="3"
       placeholder="Écrivez votre message ici..."
       class="w-full px-4 pt-4 pb-2 text-sm text-slate-700 shrink-0 resize-none focus:outline-none placeholder:text-slate-500 bg-transparent leading-relaxed"
-      onkeydown={(_e) => {
-        alert('onkeydown')
-        // if (e.key === 'Enter' && !e.shiftKey) { sendMessage(e); }
-      }}
-    ></textarea>
+    >
+    </textarea>
     <div class="flex items-center justify-between px-3 pb-3 relative">
       <!-- <div class="flex items-center gap-1">
         <button
@@ -137,12 +151,7 @@
         </button>
       </div> -->
       <div class="absolute right-2 bottom-1">
-        <!-- <ButtonSend /> -->
-         <button 
-            class="w-9 h-9 rounded-full bg-accent hover:bg-accent-light cursor-pointer text-white flex items-center justify-center transition-colors shadow-sm active:scale-95"
-            aria-label="Envoyer">
-            envoyer
-          </button>
+        <ButtonSend />
       </div>
     </div>
   </div>

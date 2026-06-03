@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { ClientRouter } from "astro:transitions";
+import { Toaster } from 'svelte-french-toast';
 ---
 
 <!DOCTYPE html>
@@ -13,9 +14,10 @@ import { ClientRouter } from "astro:transitions";
 		<meta name="description" content="Dashboard domotique" />
 		<meta name="generator" content={Astro.generator} />
 	</head>
-	<body class="bg-surface-alt min-h-screen font-sans antialiased">
+	<body class="bg-surface-alt min-h-screen font-sans antialiased relative">
 		<ClientRouter />
 		<slot />
+		<Toaster client:only="svelte"/>
 	</body>
 </html>
 

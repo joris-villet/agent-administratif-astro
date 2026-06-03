@@ -18,7 +18,7 @@ export interface IResponseTeacher {
   message: string;
   token: number;
   threadId: string;
-  title?: string; 
+  title?: string;
 }
 
 export interface IResponseTeacher {
@@ -28,12 +28,12 @@ export interface IResponseTeacher {
 }
 
 export interface IThread {
-    id: number;
-    threadId: string;
-    title: string | null;
-    createdAt: string;
-    updatedAt: string;
-    messages: { id: number; role: string; content: string }[];
-  }
+  id: number;
+  threadId: string;
+  title: string | null;
+  createdAt: string;
+  updatedAt: string;
+  messages: { id: number; role: string; content: string }[];
+}
 
 

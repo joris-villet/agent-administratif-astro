@@ -17,7 +17,7 @@
   let computedThread = $derived(storeThreads.threads);
   let splittedContent = $derived.by(() => {
     return computedThread.map((thread: any) => {
-      let message = thread.messages.at(0).content;
+      let message = thread.messages.at(0)?.content;
       if (message?.length > 50) {
         return message.substring(0, 50) + "...";
       }
@@ -82,7 +82,7 @@
   async function selectThread(id: string) {
     storeMessage.threadId = id;
     storeMessage.messages =
-      storeThreads.threads.find((t) => t.threadId === id)?.messages ?? [];
+    storeThreads.threads.find((t) => t.threadId === id)?.messages ?? [];
     window.history.pushState({}, "", `/chat/${id}`);
   }
 

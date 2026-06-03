@@ -1,11 +1,10 @@
 ---
-import DashLayout from '@/layouts/DashLayout.astro';
-import ContainerChat from '@/components/ContainerChat.svelte';
-import ContainerSources from '@/components/ContainerSources.astro';
+import DashLayout from "@/layouts/DashLayout.astro";
+import ContainerChat from "@/components/ContainerChat.svelte";
+import ContainerSources from "@/components/ContainerSources.astro";
 ---
 
-
- <DashLayout>
-  <ContainerChat />
+<DashLayout>
+  <ContainerChat client:only />
   <ContainerSources />
- </DashLayout>
+</DashLayout>
