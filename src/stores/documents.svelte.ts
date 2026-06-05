@@ -3,6 +3,8 @@ import type { IStoreDocuments, IDocumentFile } from "@/interfaces/file";
 export const storeDocuments = $state<IStoreDocuments>({
   files: [],
   selectedId: null,
+  docSaved: false,
+  documents: []
 });
 
 export function addFiles(fileList: FileList) {

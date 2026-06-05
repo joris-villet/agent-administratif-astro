@@ -4,7 +4,7 @@ import UserLogged from "@/components/UserLogged.astro";
 import Layout from "@/layouts/Layout.astro";
 import TabsFilterDocs from "@/components/TabsFilterDocs.svelte";
 import DropFilesRag from "@/components/DropFilesRag.svelte";
-import DocumentDetails from "@/components/DocumentDetails.svelte"
+import DocumentDetails from "@/components/DocumentDetails.svelte";
 import DocumentList from "@/components/DocumentList.svelte";
 ---
 
@@ -13,7 +13,6 @@ import DocumentList from "@/components/DocumentList.svelte";
     <aside
       class="w-100 shrink-0 bg-custom flex flex-col rounded-2xl overflow-hidden text-white"
     >
-      <!-- Header -->
       <div class="px-5 pt-6 pb-5 flex items-center gap-3">
         <div
           class="w-10 h-10 rounded-2xl bg-accent flex items-center justify-center shrink-0 shadow-lg shadow-accent/30"
@@ -44,7 +43,7 @@ import DocumentList from "@/components/DocumentList.svelte";
 
       <div class="p-4">
         <div class="flex gap-4 items-center px-5 pb-6">
-          <IconListThreads />
+          <IconListThreads client:only="svelte" />
           <a href="/chat">Conversations</a>
         </div>
         <hr class="text-neutral-400" />

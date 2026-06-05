@@ -29,9 +29,9 @@
       isNewMessage: false,
     }));
 
-    setTimeout(() => {
-      storeMessage.isLoading = true;
-    }, 400);
+    storeMessage.isLoading = true;
+    // setTimeout(() => {
+    // }, 400);
 
     storeMessage.messages = storeMessage.messages.concat({
       role: "user",

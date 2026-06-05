@@ -27,7 +27,6 @@
 
   $inspect("threads length => ", storeThreads.threads);
 
-
   function groupThreadsByDate(threads: IThread[]) {
     const today = new Date();
     const yesterday = new Date(today);
@@ -76,13 +75,13 @@
   function newChat() {
     storeMessage.threadId = null;
     storeMessage.messages = [];
-    window.history.pushState({}, '', '/chat');
+    window.history.pushState({}, "", "/chat");
   }
 
   async function selectThread(id: string) {
     storeMessage.threadId = id;
     storeMessage.messages =
-    storeThreads.threads.find((t) => t.threadId === id)?.messages ?? [];
+      storeThreads.threads.find((t) => t.threadId === id)?.messages ?? [];
     window.history.pushState({}, "", `/chat/${id}`);
   }
 

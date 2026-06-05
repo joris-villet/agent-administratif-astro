@@ -1,10 +1,10 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
-import { Toaster } from 'svelte-french-toast';
+// import { Toaster } from "svelte-french-toast";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8" />
@@ -17,7 +17,6 @@ import { Toaster } from 'svelte-french-toast';
 	<body class="bg-surface-alt min-h-screen font-sans antialiased relative">
 		<ClientRouter />
 		<slot />
-		<Toaster client:only="svelte"/>
+		<!-- <Toaster client:only="svelte" /> -->
 	</body>
 </html>
-

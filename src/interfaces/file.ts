@@ -14,4 +14,5 @@ export interface IStoreDocuments {
   files: IDocumentFile[];
   selectedId: string | null;
   docSaved: boolean;
+  documents: any[]
 }

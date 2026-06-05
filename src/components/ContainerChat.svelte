@@ -13,7 +13,7 @@
   <div
     class="px-7 py-5 flex items-start justify-between gap-6 border-b border-border"
   >
-    <div class="flex items-center gap-4"></div>
+    <!-- <div class="flex items-center gap-4"></div>
 
     <div
       class="shrink-0 flex items-start gap-2.5 px-4 py-3 rounded-xl border border-border bg-slate-50 max-w-55"
@@ -39,7 +39,7 @@
           Vos informations et documents sont confidentiels et protégés.
         </p>
       </div>
-    </div>
+    </div> -->
   </div>
 
   {#if conversation}

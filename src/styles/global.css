@@ -1,14 +1,16 @@
 @import "tailwindcss";
 /* @config "../../tailwind.config.js"; */
 @import "./app.css";
-/* @plugin "daisyui"; */
+/* @plugin "daisyui" {
+   themes: light --default, dark --prefersdark;
+ } */
 
 
 
 
 .bg-custom {
     background: #41478a;
-background: linear-gradient(152deg, rgba(65, 71, 138, 1) 0%, rgba(75, 44, 99, 1) 72%);
+    background: linear-gradient(152deg, rgba(65, 71, 138, 1) 0%, rgba(75, 44, 99, 1) 72%);
 }
 
 .bg-message-user {
