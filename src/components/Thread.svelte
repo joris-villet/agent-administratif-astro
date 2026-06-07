@@ -6,8 +6,6 @@
   import IconNewThread from "@/components/Icons/IconNewThread.svelte";
   import ky from "ky";
 
-  let index = $state(0);
-
   // import { onMount } from "svelte";
 
   // onMount(() => {
@@ -21,34 +19,6 @@
 
   let threadLength = $derived(storeThreads.threads.length);
   let computedThread = $derived(storeThreads.threads);
-
-  // let vibeTitleThread = $derived(
-  //   computedThread.map((t) =>
-  //     t.messages.map((m: any) => m.contentsubstring(0, index)),
-  //   ),
-  // );
-
-  $effect(() => {
-    setInterval(() => {
-      index++;
-    }, 100);
-  });
-  // const contentSplitted = $derived.by(() => {
-  //   return storeThreads.threads.map((t) => {
-  //     return t.messages.map(
-  //       (m: TMessageThread) => m.content.substring(0, 50) + "...",
-  //     );
-  //   });
-  // });
-
-  // const fn = (threads: IThread[]) => {
-  //   return threads.map((t: IThread) => {
-  //     return t.messages.map(
-  //       (m: TMessageThread) => m.content.substring(0, 50) + "...",
-  //     );
-  //   });
-  // }
-  // const contentSplitted = $derived(fn());
 
   function groupThreadsByDate(threads: IThread[]) {
     const today = new Date();
@@ -109,12 +79,6 @@
 
   $effect(() => {
     loadHistory();
-    // if (threadId) {
-    //   storeMessage.threadId = threadId;
-    //   storeMessage.messages =
-    //     storeThreads.threads.find((t) => t.threadId === threadId)?.messages ??
-    //     [];
-    // }
   });
 </script>
 
@@ -189,7 +153,7 @@
             <p
               class="font-light text-md text-neutral-300 py-0.5 italic transition-all duration-700"
             >
-              {thread.messages.at(0)?.content.substring(0, 50) + "..."}
+              {thread.threadFirstContent.substring(0, 50) + "..."}
             </p>
           </a>
         {/each}

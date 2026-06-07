@@ -4,16 +4,23 @@
   import IconIdea from "./Icons/IconIdea.svelte";
   import InputPrompt from "./InputPrompt.svelte";
   import { storeMessage } from "@/stores/message.svelte";
+  import { storeThreads } from "@/stores/thread.svelte";
 
   let { threadId }: { threadId: string } = $props<string>();
 
   onMount(() => {
     // load conversation message
-    $inspect("store message => ", storeMessage.messages);
+    if (threadId) {
+      storeMessage.threadId = threadId;
+      storeMessage.messages =
+        storeThreads.threads.find((t) => t.threadId === threadId)?.messages ??
+        [];
+    }
   });
 
   $effect(() => {
     // $inspect("threadId from ContainerChat =>", threadId);
+    $inspect("store message => ", storeMessage.messages);
     if (threadId) {
       storeMessage.threadId = threadId;
     }
