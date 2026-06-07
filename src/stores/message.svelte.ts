@@ -1,8 +1,9 @@
-import type { IMessage } from "@/interfaces";
+import type { IMessage, IConversationResponse } from "@/interfaces/conversation";
 
 
 interface IStoreMessage {
   messages: IMessage[];
+  //messages: IConversationResponse[]
   isLoading: boolean;
   maxTokens: number;
   userTokens: number;

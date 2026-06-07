@@ -10,6 +10,7 @@ export interface IThread {
   title: string | null;
   createdAt: string;
   updatedAt: string;
-  messages: TMessageThread[]
+  messages: TMessageThread[];
   threadFirstContent: string;
+  conversationId: number;
 }

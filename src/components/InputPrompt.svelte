@@ -18,90 +18,10 @@
     }
   };
 
-  // const sendMessage = async () => {
-  //   // evt.preventDefault();
-
-  //   if (!input.trim()) return;
-
-  //   let userMessage = input.trim();
-  //   input = "";
-
-  //   storeMessage.messages = storeMessage.messages.map((m) => ({
-  //     ...m,
-  //     isNewMessage: false,
-  //   }));
-
-  //   storeMessage.isLoading = true;
-  //   // setTimeout(() => {
-  //   // }, 400);
-
-  //   storeMessage.messages = storeMessage.messages.concat({
-  //     role: "user",
-  //     content: userMessage,
-  //     isNewMessage: true,
-  //   });
-
-  //   try {
-  //     const responseTeacher = await ky
-  //       .post<IResponseTeacher>(
-  //         `${import.meta.env.PUBLIC_FASTIFY_URL}/api/agent/message`,
-  //         {
-  //           credentials: "include",
-  //           json: {
-  //             messages: updatedMessages.map((m) => ({
-  //               role: m.role,
-  //               content: m.content,
-  //             })),
-  //             threadId: storeMessage.threadId,
-  //           },
-  //           timeout: 60000,
-  //         },
-  //       )
-  //       .json();
-
-  //     if (responseTeacher) {
-  //       storeMessage.isLoading = false;
-  //       if (
-  //         responseTeacher.threadId &&
-  //         responseTeacher.threadId !== storeMessage.threadId
-  //       ) {
-  //         storeMessage.threadId = responseTeacher.threadId;
-  //         window.history.pushState({}, "", `/chat/${responseTeacher.threadId}`);
-  //         const exists = storeThreads.threads.some(
-  //           (t: IThread) => t.threadId === responseTeacher.threadId,
-  //         );
-  //         if (!exists) {
-  //           storeThreads.threads = [
-  //             {
-  //               id: 0,
-  //               threadId: responseTeacher.threadId,
-  //               title: responseTeacher.title ?? userMessage.slice(0, 50),
-  //               createdAt: new Date().toISOString(),
-  //               updatedAt: new Date().toISOString(),
-  //               messages: [],
-  //             },
-  //             ...storeThreads.threads,
-  //           ];
-  //         }
-  //       }
-  //       setTimeout(() => {
-  //         storeMessage.messages = storeMessage.messages.concat({
-  //           role: "assistant",
-  //           content: responseTeacher.content,
-  //           isNewMessage: true,
-  //         });
-  //       }, 300);
-  //     }
-  //   } catch (e) {
-  //     storeMessage.isLoading = false;
-  //     console.error(e);
-  //   }
-  // };
-
-  $effect(() => {
-    $inspect("sendMessage =>", { messages: updatedMessages });
-    $inspect("threadId =>", storeMessage.threadId);
-  });
+  // $effect(() => {
+  //   $inspect("sendMessage =>", { messages: updatedMessages });
+  //   $inspect("threadId =>", storeMessage.threadId);
+  // });
 
   const getTitleThread = async (threadId: string) => {
     try {
@@ -116,18 +36,18 @@
         })
         .json<{ title: string }>();
 
-      console.log("data.title => ", data.title);
+      // console.log("data.title => ", data.title);
 
       if (data.title) {
-        console.log("store thread => ", storeThreads.threads);
+        // console.log("store thread => ", storeThreads.threads);
 
         const thisThread = storeThreads.threads.find(
           (t) => t.threadId === threadId,
         );
-        console.log("thisTrhead => ", thisThread);
+        // console.log("thisTrhead => ", thisThread);
         if (thisThread) {
           thisThread.title = data.title;
-          console.log("storeThread.threadId => ", storeThreads.threads);
+          // console.log("storeThread.threadId => ", storeThreads.threads);
         }
       }
     } catch (error) {
@@ -186,7 +106,7 @@
         sendStoreMessage("system", "No respone from Agent", true);
       }
 
-      console.log("res agent =>", responseAgent);
+      // console.log("res agent =>", responseAgent);
       storeMessage.isLoading = false;
 
       if (responseAgent.threadId !== storeMessage.threadId) {

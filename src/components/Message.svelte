@@ -53,15 +53,12 @@
       class="max-w-[75%] bg-message-ai px-4 py-2.5 rounded-2xl rounded-bl-sm shadow-sm"
     >
       <div
-        class="anim-enter text-sm text-slate-700 leading-relaxed whitespace-pre-wrap"
+        class="anim-enter text-sm text-slate-700 whitespace-pre-line font-mono leading-relaxed"
       >
-        <!-- <VibeMessage {content} /> -->
         {#if isNewMessage}
           <VibeMessage {content} />
         {:else}
-          <span class="whitespace-pre-line font-mono leading-none"
-            >{content}</span
-          >
+          <span>{content}</span>
         {/if}
       </div>
     </div>

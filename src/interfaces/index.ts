@@ -1,8 +1,3 @@
-export interface IMessage {
-  role: string;
-  content: string;
-  isNewMessage?: boolean;
-}
 
 export interface IUser {
   id?: number;

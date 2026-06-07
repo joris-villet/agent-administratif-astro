@@ -5,28 +5,52 @@
   import InputPrompt from "./InputPrompt.svelte";
   import { storeMessage } from "@/stores/message.svelte";
   import { storeThreads } from "@/stores/thread.svelte";
+  import type { IMessage } from "@/interfaces/conversation";
+  import ky from "ky";
 
   let { threadId }: { threadId: string } = $props<string>();
+  let conversation = $derived(storeMessage.messages.length);
 
-  onMount(() => {
+  const loadConversation = async (conversationId: number) => {
+    try {
+      const url: string = `${import.meta.env.PUBLIC_FASTIFY_URL}/api/conversation/get`;
+      const messages = await ky
+        .post<IMessage>(url, {
+          credentials: "include",
+          json: {
+            conversationId: conversationId,
+          },
+        })
+        .json();
+
+      // console.log("messages => ", messages);
+
+      storeMessage.messages = storeMessage.messages.concat(messages);
+    } catch (error) {
+      console.log("err load messages");
+    }
+  };
+
+  onMount(async () => {
     // load conversation message
+
     if (threadId) {
-      storeMessage.threadId = threadId;
-      storeMessage.messages =
-        storeThreads.threads.find((t) => t.threadId === threadId)?.messages ??
-        [];
+      storeMessage.messages = [];
+
+      const conversation = storeThreads.threads.find(
+        (t) => t.threadId === threadId,
+      );
+      // console.log("conversation found => ", conversation);
+      if (conversation) {
+        await loadConversation(conversation.id);
+      }
     }
   });
 
   $effect(() => {
-    // $inspect("threadId from ContainerChat =>", threadId);
-    $inspect("store message => ", storeMessage.messages);
-    if (threadId) {
-      storeMessage.threadId = threadId;
-    }
+    // $inspect("store message => ", storeMessage.messages);
+    $inspect("conversation ? => ", conversation);
   });
-
-  const conversation = $derived(storeMessage.messages.length);
 </script>
 
 <section

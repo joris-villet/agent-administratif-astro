@@ -55,7 +55,7 @@
         })
         .json<IThread[]>();
 
-      console.log("threads => ", threads);
+      // console.log("threads => ", threads);
       storeThreads.threads = threads;
     } catch (e) {
       console.error("Failed to load history:", e);
@@ -82,7 +82,7 @@
   });
 </script>
 
-<div class="p-4 pb-6 mx-auto transition-all duration-1000">
+<div class="p-4 pb-6 mx-auto">
   {#if threadLength}
     <div
       class="flex items-center gap-4 py-2 px-4 bg-accent max-w-max h-full shadow-lg shadow-accent/30 rounded-xl cursor-pointer border border-white/20 text-sm font-medium text-slate-100"
@@ -132,7 +132,7 @@
             //   selectThread(thread.threadId);
             // }}
             href={`/chat/${thread.threadId}`}
-            class="block w-full cursor-pointer relative px-4 py-4 rounded-xl border border-white/20 text-sm font-medium text-slate-200 hover:bg-white/10 hover:border-white/30 transition-transform duration-1000 origin-left hover:border-l-blue-500"
+            class="block w-full cursor-pointer relative px-4 py-4 rounded-xl border border-white/20 text-sm font-medium text-slate-200 hover:bg-white/10 hover:border-white/30 hover:border-l-blue-500"
           >
             <span class="absolute left-2 top-2 text-xs italic">
               à {new Date(thread.createdAt)
@@ -145,14 +145,10 @@
 
             <ThreadOptions threadId={thread.threadId} title={thread.title} />
 
-            <p
-              class="w-full text-left font-bold py-0.5 mt-4 transition-all duration-700 origin-left"
-            >
+            <p class="w-full text-left font-bold py-0.5 mt-4">
               {thread.title}
             </p>
-            <p
-              class="font-light text-md text-neutral-300 py-0.5 italic transition-all duration-700"
-            >
+            <p class="font-light text-md text-neutral-300 py-0.5 italic">
               {thread.threadFirstContent.substring(0, 50) + "..."}
             </p>
           </a>
