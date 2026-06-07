@@ -1,42 +1,11 @@
-
-
 <script lang="ts">
+  // import { storeThreads } from "@/stores/thread.svelte";
   import Message from "./Message.svelte";
   import { storeMessage } from "@/stores/message.svelte";
-  import type { IMessage } from "@/interfaces";
 
-  //let index = $state(0);
-  // Référence au conteneur de messages
   let containerRef: HTMLDivElement;
-
-  // function typeText(text: string) {
-  //   setInterval(() => {
-  //     index++;
-  //     text.substring(0, index);
-  //   }, 100);
-  // }
-
-  // function removeThinkSection(text: string): string {
-  //   const lastThinkEnd = text.lastIndexOf("</think>");
-  //   if (lastThinkEnd !== -1) {
-  //     return text.slice(lastThinkEnd + "</think>".length).trim();
-  //   }
-  //   return text;
-  // }
-  // let testMessages = $state([
-  //   {
-  //     role: "user",
-  //     content: "Bonjour",
-  //     isNewMessage: false
-  //   },
-  //   {
-  //     role: "assistant",
-  //     content: "Bonjour! Comment puis-je vous aider?",
-  //     isNewMessage: false
-  //   }
-  // ])
-  let messages = $state<IMessage[]>([]);
-  let counterMessages = $derived(storeMessage.messages.length);
+  // let threads = $derived(storeThreads.threads);
+  // let counterMessages = $derived(storeMessage.messages.length);
 
   // Fonction pour défiler vers le bas
   function scrollToBottom() {
@@ -52,13 +21,13 @@
   }
 
   $effect(() => {
-    messages = storeMessage.messages;
-    console.log("counterMessages => ", counterMessages);
+    //messages = storeMessage.messages;
+    // console.log("counterMessages => ", counterMessages);
 
     // if (counterMessages > 10) {
     //   alert('10 messages now');
     // }
-    
+
     // Utiliser setTimeout pour s'assurer que le DOM est mis à jour avant de défiler
     setTimeout(scrollToBottom, 10);
   });
@@ -70,13 +39,21 @@
   });
 </script>
 
-<div 
+<div
   bind:this={containerRef}
-  onscroll={handleScroll} 
+  onscroll={handleScroll}
   class="flex-1 min-h-0 overflow-y-auto py-6 relative"
 >
   <div class="mx-auto w-full space-y-4 pb-4 p-6">
-    {#each messages as message}
+    <!-- <p class="text-red-500 font-bold">
+      store message thread id: {storeMessage.threadId}
+    </p>
+    <p>
+      {threads.map(
+        (t) => `thread id: ${t.threadId}\n, thread title: ${t.title}\n`,
+      )}
+    </p> -->
+    {#each storeMessage.messages as message}
       <Message
         role={message.role}
         content={message.content}
@@ -85,4 +62,3 @@
     {/each}
   </div>
 </div>
-

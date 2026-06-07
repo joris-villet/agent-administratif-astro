@@ -1,8 +1,23 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import ContainerMessages from "./ContainerMessages.svelte";
   import IconIdea from "./Icons/IconIdea.svelte";
   import InputPrompt from "./InputPrompt.svelte";
   import { storeMessage } from "@/stores/message.svelte";
+
+  let { threadId }: { threadId: string } = $props<string>();
+
+  onMount(() => {
+    // load conversation message
+    $inspect("store message => ", storeMessage.messages);
+  });
+
+  $effect(() => {
+    // $inspect("threadId from ContainerChat =>", threadId);
+    if (threadId) {
+      storeMessage.threadId = threadId;
+    }
+  });
 
   const conversation = $derived(storeMessage.messages.length);
 </script>

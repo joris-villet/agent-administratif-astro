@@ -35,6 +35,7 @@
     "svelte-french-toast": "^1.2.0",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
+    "uuid": "^14.0.0",
     "web-animations-js": "^2.3.2"
   },
   "devDependencies": {

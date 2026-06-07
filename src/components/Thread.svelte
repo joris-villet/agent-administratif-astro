@@ -2,11 +2,17 @@
   import { storeMessage } from "@/stores/message.svelte";
   import { storeThreads } from "@/stores/thread.svelte";
   import ThreadOptions from "@/components/ThreadOptions.svelte";
-  import type { IThread } from "@/interfaces";
+  import type { IThread } from "@/interfaces/thread";
   import IconNewThread from "@/components/Icons/IconNewThread.svelte";
   import ky from "ky";
 
-  let { threadId }: { threadId?: string } = $props();
+  let index = $state(0);
+
+  // import { onMount } from "svelte";
+
+  // onMount(() => {
+  //   $inspect("threadId from Thread component => ", storeMessage.threadId);
+  // });
 
   let states = $state<{ threads: IThread[]; loading: boolean }>({
     threads: [],
@@ -15,17 +21,34 @@
 
   let threadLength = $derived(storeThreads.threads.length);
   let computedThread = $derived(storeThreads.threads);
-  let splittedContent = $derived.by(() => {
-    return computedThread.map((thread: any) => {
-      let message = thread.messages.at(0)?.content;
-      if (message?.length > 50) {
-        return message.substring(0, 50) + "...";
-      }
-      return message;
-    });
-  });
 
-  $inspect("threads length => ", storeThreads.threads);
+  // let vibeTitleThread = $derived(
+  //   computedThread.map((t) =>
+  //     t.messages.map((m: any) => m.contentsubstring(0, index)),
+  //   ),
+  // );
+
+  $effect(() => {
+    setInterval(() => {
+      index++;
+    }, 100);
+  });
+  // const contentSplitted = $derived.by(() => {
+  //   return storeThreads.threads.map((t) => {
+  //     return t.messages.map(
+  //       (m: TMessageThread) => m.content.substring(0, 50) + "...",
+  //     );
+  //   });
+  // });
+
+  // const fn = (threads: IThread[]) => {
+  //   return threads.map((t: IThread) => {
+  //     return t.messages.map(
+  //       (m: TMessageThread) => m.content.substring(0, 50) + "...",
+  //     );
+  //   });
+  // }
+  // const contentSplitted = $derived(fn());
 
   function groupThreadsByDate(threads: IThread[]) {
     const today = new Date();
@@ -56,15 +79,14 @@
     if (storeThreads.loaded) return;
     storeThreads.loaded = true;
     try {
-      const data = await ky
+      const threads = await ky
         .get(`${import.meta.env.PUBLIC_FASTIFY_URL}/api/thread/get`, {
           credentials: "include",
         })
         .json<IThread[]>();
 
-      console.log("thread => ", data);
-
-      storeThreads.threads = data;
+      console.log("threads => ", threads);
+      storeThreads.threads = threads;
     } catch (e) {
       console.error("Failed to load history:", e);
     } finally {
@@ -78,28 +100,28 @@
     window.history.pushState({}, "", "/chat");
   }
 
-  async function selectThread(id: string) {
-    storeMessage.threadId = id;
-    storeMessage.messages =
-      storeThreads.threads.find((t) => t.threadId === id)?.messages ?? [];
-    window.history.pushState({}, "", `/chat/${id}`);
-  }
+  // async function selectThread(id: string) {
+  //   storeMessage.threadId = id;
+  //   storeMessage.messages =
+  //     storeThreads.threads.find((t) => t.threadId === id)?.messages ?? [];
+  //   window.history.pushState({}, "", `/chat/${id}`);
+  // }
 
   $effect(() => {
     loadHistory();
-    if (threadId) {
-      storeMessage.threadId = threadId;
-      storeMessage.messages =
-        storeThreads.threads.find((t) => t.threadId === threadId)?.messages ??
-        [];
-    }
+    // if (threadId) {
+    //   storeMessage.threadId = threadId;
+    //   storeMessage.messages =
+    //     storeThreads.threads.find((t) => t.threadId === threadId)?.messages ??
+    //     [];
+    // }
   });
 </script>
 
-<div class="p-4 pb-6 mx-auto">
+<div class="p-4 pb-6 mx-auto transition-all duration-1000">
   {#if threadLength}
     <div
-      class="flex items-center gap-4 py-2 px-4 bg-accent max-w-max h-full shadow-lg shadow-accent/30 rounded-xl cursor-pointer border border-white/20 text-sm font-medium text-slate-100 transition-all duration-500"
+      class="flex items-center gap-4 py-2 px-4 bg-accent max-w-max h-full shadow-lg shadow-accent/30 rounded-xl cursor-pointer border border-white/20 text-sm font-medium text-slate-100"
     >
       <IconNewThread />
       <button class="block cursor-pointer" onclick={newChat}
@@ -141,12 +163,12 @@
         <p class="text-xs text-gray-200 pb-1 pt-4">{label}</p>
         {#each group as thread}
           <a
-            onclick={(e) => {
-              e.preventDefault();
-              selectThread(thread.threadId);
-            }}
+            // onclick={(e) => {
+            //   e.preventDefault();
+            //   selectThread(thread.threadId);
+            // }}
             href={`/chat/${thread.threadId}`}
-            class="block w-full cursor-pointer relative px-4 py-4 rounded-xl border border-white/20 text-sm font-medium text-slate-200 hover:bg-white/10 hover:border-white/30 transition-all hover:border-l-blue-500"
+            class="block w-full cursor-pointer relative px-4 py-4 rounded-xl border border-white/20 text-sm font-medium text-slate-200 hover:bg-white/10 hover:border-white/30 transition-transform duration-1000 origin-left hover:border-l-blue-500"
           >
             <span class="absolute left-2 top-2 text-xs italic">
               à {new Date(thread.createdAt)
@@ -159,11 +181,15 @@
 
             <ThreadOptions threadId={thread.threadId} title={thread.title} />
 
-            <p class="w-full text-left font-bold py-0.5 mt-4">
-              {thread.title ?? thread.threadId}
+            <p
+              class="w-full text-left font-bold py-0.5 mt-4 transition-all duration-700 origin-left"
+            >
+              {thread.title}
             </p>
-            <p class="font-light text-md text-neutral-300 py-0.5 italic">
-              {splittedContent}
+            <p
+              class="font-light text-md text-neutral-300 py-0.5 italic transition-all duration-700"
+            >
+              {thread.messages.at(0)?.content.substring(0, 50) + "..."}
             </p>
           </a>
         {/each}

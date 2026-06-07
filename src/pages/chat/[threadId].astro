@@ -2,9 +2,12 @@
 import ContainerChat from "@/components/ContainerChat.svelte";
 import ContainerSources from "@/components/ContainerSources.astro";
 import DashLayout from "@/layouts/DashLayout.astro";
+const { threadId } = Astro.params;
+
+console.log("threadId from Astro.params =>", threadId);
 ---
 
 <DashLayout>
-  <ContainerChat client:only="svelte" />
+  <ContainerChat client:only="svelte" {threadId} />
   <ContainerSources />
 </DashLayout>

@@ -2,12 +2,6 @@
 import Thread from "./Thread.svelte";
 import UserLogged from "@/components/UserLogged.astro";
 import IconFiles from "@/components/Icons/IconFiles.svelte";
-
-// interface Props {
-//   threadId?: string;
-// }
-
-// const { threadId } = Astro.props;
 ---
 
 <aside
@@ -50,7 +44,6 @@ import IconFiles from "@/components/Icons/IconFiles.svelte";
     <hr class="text-neutral-400" />
   </div>
 
-  <!-- <Thread client:only="svelte" threadId={threadId ?? ""} /> -->
   <Thread client:only="svelte" />
 
   <div class="flex px-4 pb-5 pt-4 border-t border-white/10 space-y-1">
