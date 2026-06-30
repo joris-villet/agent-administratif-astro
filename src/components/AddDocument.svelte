@@ -16,7 +16,7 @@
       formData.append("file", file.rawFile);
       console.log("formData => ", formData);
 
-      const url = `${import.meta.env.PUBLIC_FASTIFY_URL}/api/document/add`;
+      const url = `${import.meta.env.PUBLIC_BACKEND_URL}/api/document/add`;
 
       const json = await ky
         .post(url, {

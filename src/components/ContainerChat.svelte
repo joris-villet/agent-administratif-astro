@@ -13,7 +13,7 @@
 
   const loadConversation = async (conversationId: number) => {
     try {
-      const url: string = `${import.meta.env.PUBLIC_FASTIFY_URL}/api/conversation/get`;
+      const url: string = `${import.meta.env.PUBLIC_BACKEND_URL}/api/conversation/get`;
       const messages = await ky
         .post<IMessage>(url, {
           credentials: "include",
@@ -23,11 +23,11 @@
         })
         .json();
 
-      // console.log("messages => ", messages);
+      console.log("messages => ", messages);
 
       storeMessage.messages = storeMessage.messages.concat(messages);
     } catch (error) {
-      console.log("err load messages");
+      console.log("err load messages", error);
     }
   };
 
@@ -38,7 +38,7 @@
       storeMessage.messages = [];
 
       const conversation = storeThreads.threads.find(
-        (t) => t.threadId === threadId,
+        (t) => t.threadId === threadId
       );
       // console.log("conversation found => ", conversation);
       if (conversation) {

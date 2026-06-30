@@ -4,6 +4,10 @@
 
   const { role = "", content = "", isNewMessage = undefined } = $props();
   let loading = $derived(storeMessage.isLoading);
+
+  $effect(() => {
+    $inspect("message => ", storeMessage.messages);
+  });
 </script>
 
 {#if role === "user"}

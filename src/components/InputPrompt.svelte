@@ -25,7 +25,7 @@
 
   const getTitleThread = async (threadId: string) => {
     try {
-      const url: string = `${import.meta.env.PUBLIC_FASTIFY_URL}/api/agent/generate-title`;
+      const url: string = `${import.meta.env.PUBLIC_BACKEND_URL}/api/agent/generate-title`;
       const data = await ky
         .post(url, {
           credentials: "include",
@@ -42,7 +42,7 @@
         // console.log("store thread => ", storeThreads.threads);
 
         const thisThread = storeThreads.threads.find(
-          (t) => t.threadId === threadId,
+          (t) => t.threadId === threadId
         );
         // console.log("thisTrhead => ", thisThread);
         if (thisThread) {
@@ -86,7 +86,7 @@
     });
 
     try {
-      const url: string = `${import.meta.env.PUBLIC_FASTIFY_URL}/api/agent/message`;
+      const url: string = `${import.meta.env.PUBLIC_BACKEND_URL}/api/agent/message`;
       const responseAgent = await ky
         .post<IResponseTeacher>(url, {
           credentials: "include",
@@ -118,7 +118,7 @@
         sendStoreMessage(
           "system",
           "Erreur de synchronisation. Recharge la page.",
-          true,
+          true
         );
 
         return;

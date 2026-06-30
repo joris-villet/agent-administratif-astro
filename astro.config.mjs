@@ -1,16 +1,11 @@
 import { defineConfig } from "astro/config";
 
-import playformCompress from "@playform/compress";
-import playformInline from "@playform/inline";
 import svelte from "@astrojs/svelte";
-
 import tailwindcss from "@tailwindcss/vite";
-
 import node from "@astrojs/node";
 
-// https://astro.build/config
 export default defineConfig({
-  integrations: [playformInline(), playformCompress(), svelte()],
+  integrations: [svelte()],
   vite: {
     plugins: [tailwindcss()],
   },

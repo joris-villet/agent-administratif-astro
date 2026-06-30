@@ -1,38 +1,65 @@
-# Tauri + Astro
+<div align="center">
+  <img src="public/cover.png" width="800" alt="Agent Administratif" />
+  
+  <h1>🤖 Agent-Administratif</h1>
+  
+  <p><b>Un bot administratif connecté à Telegram, avec gestion sécurisée des mots de passe via Vaultwarden.</b></p>
 
-This template should help get you started developing with Tauri and Astro.
+  <img src="https://img.shields.io/badge/Status-Active-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Platform-Telegram-lightgrey?style=for-the-badge" />
+</div>
 
-![App Screenshot](./Screenshot-light.png#gh-light-mode-only)
-![App Screenshot](./Screenshot-dark.png#gh-dark-mode-only)
+---
 
-## Getting started
+## Liste des prérequis
 
-First, make sure you have completed the [prerequisites](https://beta.tauri.app/guides/prerequisites/) to have a working development environment.
+- Node.js 24+
+- Bun / pnpm / npm
+- Telegram Mobile ou Desktop (facultatif)
 
-Then install the dependencies using the package manager of your choice:
+<!-- ## 📱 Telegram Setup -->
+
+<!-- 1. Crée un bot via [@BotFather](https://t.me/botfather) → récupère le token
+2. Trouve ton Chat ID via [@userinfobot](https://t.me/userinfobot) -->
+
+<!-- > Guide complet : [how-to-get-telegram-bot-chat-id](https://az-tools.com/actu/creer-un-bot-telegram-etapes-simples-pour-recuperer-le-token-et-lid-de-chat/) -->
+
+## 🚀 Démarrage rapide
+
+### 1️⃣ Cloner le repo
 
 ```bash
-npm install
-# OR
-pnpm install
+git clone https://github.com/joris-villet/agent-administratif-astro.git
 ```
 
-Then to get started run:
+### 2️⃣ Configurer le `.env`
 
 ```bash
-npm run tauri dev
-# OR
-pnpm tauri dev
+cp .env.example .env
 ```
 
-to build your app run
+### 3️⃣ Installer les dépendances
 
 ```bash
-npm run tauri build
-# OR
-pnpm tauri build
+bun install
 ```
 
-## Recommended IDE Setup
+### 4️⃣ You need to start backend project first
 
-[VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer).
+=> https://github.com/joris-villet/agent-administratif-hono
+
+run
+
+```bash
+bun dev
+```
+
+<!-- **Option B — Postgres local** (défaut, rien à changer)
+
+### 4️⃣ Lancer
+
+```bash
+chmod +x starter.sh
+./starter.sh
+``` -->

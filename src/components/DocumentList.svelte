@@ -132,7 +132,7 @@
     loading = true;
     error = null;
     try {
-      const url = `${import.meta.env.PUBLIC_FASTIFY_URL}/api/document/list/${offset}/${limit}`;
+      const url = `${import.meta.env.PUBLIC_BACKEND_URL}/api/document/list/${offset}/${limit}`;
       const res = await ky
         .get(url, { credentials: "include" })
         .json<{ data: Document[]; total: number }>();
@@ -157,7 +157,7 @@
     if (!confirm(`Supprimer "${doc.title}" ?`)) return;
     await ky.delete(
       `${import.meta.env.PUBLIC_FASTIFY_URL}/api/document/${doc.id}`,
-      { credentials: "include" },
+      { credentials: "include" }
     );
     await fetchDocuments();
   }

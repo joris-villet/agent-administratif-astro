@@ -1,7 +1,6 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 
-
 /// <reference types="vite-plugin-pwa/client" />
 
 declare namespace App {
@@ -12,7 +11,7 @@ declare namespace App {
 }
 
 interface ImportMetaEnv {
-  readonly PUBLIC_FASTIFY_URL: string;
+  readonly PUBLIC_BACKEND_URL: string;
 }
 
 interface ImportMeta {

@@ -33,7 +33,7 @@
       else if (date.toDateString() === yesterday.toDateString()) label = "Hier";
       else {
         const diffDays = Math.floor(
-          (today.getTime() - date.getTime()) / (1000 * 60 * 60 * 24),
+          (today.getTime() - date.getTime()) / (1000 * 60 * 60 * 24)
         );
         if (diffDays < 7) label = `Il y a ${diffDays} jours`;
         else label = "Plus ancien";
@@ -50,12 +50,12 @@
     storeThreads.loaded = true;
     try {
       const threads = await ky
-        .get(`${import.meta.env.PUBLIC_FASTIFY_URL}/api/thread/get`, {
+        .get(`${import.meta.env.PUBLIC_BACKEND_URL}/api/thread/get`, {
           credentials: "include",
         })
         .json<IThread[]>();
 
-      // console.log("threads => ", threads);
+      console.log("threads => ", threads);
       storeThreads.threads = threads;
     } catch (e) {
       console.error("Failed to load history:", e);
@@ -148,9 +148,9 @@
             <p class="w-full text-left font-bold py-0.5 mt-4">
               {thread.title}
             </p>
-            <p class="font-light text-md text-neutral-300 py-0.5 italic">
+            <!-- <p class="font-light text-md text-neutral-300 py-0.5 italic">
               {thread.threadFirstContent.substring(0, 50) + "..."}
-            </p>
+            </p> -->
           </a>
         {/each}
       {/each}
